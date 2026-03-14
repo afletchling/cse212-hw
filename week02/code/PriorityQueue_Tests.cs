@@ -6,24 +6,70 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 public class PriorityQueueTests
 {
     [TestMethod]
-    // Scenario: 
-    // Expected Result: 
-    // Defect(s) Found: 
-    public void TestPriorityQueue_1()
+    // Scenario: Verifing if the priority number enforces order
+    // Expected Result: "hello" "thank you" "goodbye"
+    // Defect(s) Found: Items were not being removed.
+    public void TestPriorityQueue_CorrectOrder()
     {
+        string[] testOrder = ["hello", "thank you", "goodbye"];
         var priorityQueue = new PriorityQueue();
-        Assert.Fail("Implement the test case and then remove this.");
+        priorityQueue.Enqueue("goodbye", 1);
+        priorityQueue.Enqueue("thank you", 2);
+        priorityQueue.Enqueue("hello", 3);
+
+        foreach (string compare in testOrder)
+        {
+            Assert.AreEqual(compare, priorityQueue.Dequeue());
+        }
     }
 
     [TestMethod]
-    // Scenario: 
-    // Expected Result: 
-    // Defect(s) Found: 
-    public void TestPriorityQueue_2()
+    // Scenario: Correctly ensuring that all entries are respected in the proper order with same priority items.
+    // Expected Result: "hello" "hola" "bonjour" "thank you" "gracias" "goodbye" "adios"
+    // Defect(s) Found: Dequeue was not reaching the start and end of the queue.
+    public void TestPriorityQueue_CorrectPriorityOrdering()
     {
+        string[] testOrder = ["hello", "hola", "bonjour", "thank you", "gracias", "goodbye", "adios"];
         var priorityQueue = new PriorityQueue();
-        Assert.Fail("Implement the test case and then remove this.");
+        priorityQueue.Enqueue("adios", 1);
+        priorityQueue.Enqueue("goodbye", 1);
+        priorityQueue.Enqueue("gracias", 2);
+        priorityQueue.Enqueue("thank you", 2);
+        priorityQueue.Enqueue("bonjour", 3);
+        priorityQueue.Enqueue("hola", 3);
+        priorityQueue.Enqueue("hello", 3);
+
+        foreach (string compare in testOrder)
+        {
+            Assert.AreEqual(compare, priorityQueue.Dequeue());
+        }
     }
 
-    // Add more test cases as needed below.
+    [TestMethod]
+    // Scenario: Test if a exception is thrown when removing from a empty queue
+    // Expected Result: "hello" "goodbye"
+    // Defect(s) Found:
+    public void TestPriorityQueue_NonEmptyQueue()
+    {
+        string[] testOrder = ["hello", "thank you"];
+        var priorityQueue = new PriorityQueue();
+        priorityQueue.Enqueue("thank you", 1);
+        priorityQueue.Enqueue("hello", 2);
+
+        foreach (string compare in testOrder)
+        {
+            Assert.AreEqual(compare, priorityQueue.Dequeue());
+        }
+
+        try
+        {
+            priorityQueue.Dequeue();
+            Assert.Fail("Succeeded in removing from an empty queue");
+        }
+        catch (Exception exception)
+        {
+            Assert.IsTrue(exception is InvalidOperationException, "Invalid exception for this operation.");
+            Assert.AreEqual("The queue is empty.", exception.Message);
+        }
+    }
 }
