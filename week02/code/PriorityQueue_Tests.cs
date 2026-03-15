@@ -25,7 +25,7 @@ public class PriorityQueueTests
 
     [TestMethod]
     // Scenario: Correctly ensuring that all entries are respected in the proper order with same priority items.
-    // Expected Result: "hello" "hola" "bonjour" "thank you" "gracias" "goodbye" "adios"
+    // Expected Result: "bonjour" "hola" "hello" "gracias" "thank you" "adios" "goodbye"
     // Defect(s) Found: Dequeue was not reaching the start and end of the queue.
     public void TestPriorityQueue_CorrectPriorityOrdering()
     {
