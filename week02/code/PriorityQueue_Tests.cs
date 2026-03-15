@@ -29,7 +29,7 @@ public class PriorityQueueTests
     // Defect(s) Found: Dequeue was not reaching the start and end of the queue.
     public void TestPriorityQueue_CorrectPriorityOrdering()
     {
-        string[] testOrder = ["hello", "hola", "bonjour", "thank you", "gracias", "goodbye", "adios"];
+        string[] testOrder = ["bonjour", "hola", "hello", "gracias", "thank you", "adios", "goodbye"];
         var priorityQueue = new PriorityQueue();
         priorityQueue.Enqueue("adios", 1);
         priorityQueue.Enqueue("goodbye", 1);
