@@ -5,7 +5,7 @@
         // 6 4
         // 7 3
         // 8 2
-        // 9 1 
+        // 9 1
 
         Console.WriteLine("------------");
         DisplaySumPairs([-20, -15, -10, -5, 0, 5, 10, 15, 20]);
@@ -28,6 +28,16 @@
     /// </summary>
     /// <param name="numbers">array of integers</param>
     private static void DisplaySumPairs(int[] numbers) {
-        // TODO Problem 2 - This should print pairs of numbers in the given array
+        HashSet<int> combinations = numbers.ToHashSet();
+
+        foreach (int number in combinations)
+        {
+            int compare = 10 - number;
+            if (combinations.Contains(compare) && compare != number)
+            {
+                Console.WriteLine($"{number} {compare}");
+                combinations.Remove(compare);
+            }
+        }
     }
 }
