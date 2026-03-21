@@ -1,5 +1,15 @@
 public class FeatureCollection
 {
-    // TODO Problem 5 - ADD YOUR CODE HERE
-    // Create additional classes as necessary
+    public Earthquake[] features { get; set; }
+}
+
+public class Earthquake
+{
+    public EarthquakeProperties properties { get; set; }
+}
+
+public class EarthquakeProperties
+{
+    public double ?mag { get; set; }
+    public string place { get; set; }
 }
