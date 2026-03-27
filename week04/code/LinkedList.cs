@@ -132,11 +132,14 @@ public class LinkedList : IEnumerable<int>
         {
             if (curr.Data == value)
             {
-                if (curr == _head && curr == _tail)
+                if (curr == _head)
                 {
                     _head = null;
+                }
+
+                if (curr == _tail)
+                {
                     _tail = null;
-                    break;
                 }
 
                 if (curr.Prev is not null)
